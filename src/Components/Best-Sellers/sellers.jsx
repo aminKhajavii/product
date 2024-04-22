@@ -1,4 +1,3 @@
-import { useState } from "react";
 import image1 from "../../assets/images/sellers/image1.png";
 import image2 from "../../assets/images/sellers/image2.png";
 import image3 from "../../assets/images/sellers/image3.png";
@@ -12,9 +11,10 @@ const dataSellers = [
     sub: "turn it up pants",
     price: "180",
     colors: [
-      { id: 1, name: "bg-green-800" },
-      { id: 2, name: "bg-blue-900" },
-      { id: 3, name: "bg-red-900" },
+      { id: 1, name: "#7F1D1D" },
+      { id: 2, name: "#713F12" },
+      { id: 3, name: "#064E3B" },
+      { id: 3, name: "#312E81" },
     ],
   },
   {
@@ -24,9 +24,10 @@ const dataSellers = [
     sub: "turn it up pants",
     price: "120",
     colors: [
-      { id: 1, name: "bg-gray-800" },
-      { id: 2, name: "bg-red-900" },
-      { id: 3, name: "bg-yellow-600" },
+      { id: 1, name: "#831843" },
+      { id: 2, name: "#16A34A" },
+      { id: 3, name: "#84CC16" },
+      { id: 4, name: "#F59E0B" },
     ],
   },
   {
@@ -36,14 +37,14 @@ const dataSellers = [
     sub: "turn it up pants",
     price: "220",
     colors: [
-      { id: 1, name: "bg-gray-800" },
-      { id: 2, name: "bg-green-800" },
-      { id: 3, name: "bg-red-900" },
+      { id: 1, name: "#F87171" },
+      { id: 2, name: "#047857" },
+      { id: 3, name: "#2563EB" },
+      { id: 4, name: "r#2563EB" },
     ],
   },
 ];
 const Sellers = () => {
-  const [iconColor, setIconColor] = useState(false);
   return (
     <div className="container m-auto">
       <div className="flex items-center justify-between mb-5 ">
@@ -55,12 +56,7 @@ const Sellers = () => {
           <div className="" key={item.id}>
             <div className="relative">
               <img src={item.img} alt="" />
-              <MdFavorite
-                className={`absolute  top-5 right-5 ${
-                  iconColor ? "text-red-600" : "text-white"
-                } `}
-                onClick={() => setIconColor((prevColor) => !prevColor)}
-              />
+              <MdFavorite className={`absolute  top-5 right-5 `} />
             </div>
             <div className="px-2">
               <h6 className="">{item.title}</h6>
@@ -69,42 +65,11 @@ const Sellers = () => {
                 <span className="font-bold">${item.price}</span>
               </div>
               <div className="flex gap-1 ">
-                {item.colors.map((color) => (
-                  <div key={color.id}>
+                {item.colors.map((color, index) => (
+                  <div key={index}>
                     <div
-                      className={` ${
-                        color.name === "bg-gray-800"
-                          ? "bg-gray-800 rounded-full w-5 h-5"
-                          : "hidden"
-                      } `}
-                    ></div>
-                    <div
-                      className={` ${
-                        color.name === "bg-yellow-600"
-                          ? "bg-yellow-600 rounded-full w-5 h-5"
-                          : "hidden"
-                      }`}
-                    ></div>
-                    <div
-                      className={`  ${
-                        color.name === "bg-blue-900"
-                          ? "bg-blue-900 rounded-full w-5 h-5"
-                          : "hidden"
-                      }`}
-                    ></div>
-                    <div
-                      className={`  ${
-                        color.name === "bg-red-900"
-                          ? "bg-red-900 rounded-full w-5 h-5"
-                          : "hidden"
-                      }`}
-                    ></div>
-                    <div
-                      className={`  ${
-                        color.name === "bg-green-800"
-                          ? "bg-green-800 rounded-full w-5 h-5"
-                          : "hidden"
-                      }`}
+                      style={{ backgroundColor: color.name }}
+                      className={`bg-${color.name} rounded-full w-5 h-5`}
                     ></div>
                   </div>
                 ))}
